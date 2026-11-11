@@ -1,6 +1,6 @@
 #define SLIMR_TEST_MAIN
-#include "slimr/test.hpp"
-#include "slimr/ws.hpp"
+#include "test.hpp"
+#include "ws.hpp"
 
 using namespace slimr;
 

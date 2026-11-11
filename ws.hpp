@@ -1,6 +1,6 @@
 #pragma once
 
-#include "slimr/json.hpp"
+#include "json.hpp"
 
 #include <curl/curl.h>
 #include <curl/websockets.h>
