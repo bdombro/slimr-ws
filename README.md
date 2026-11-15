@@ -65,13 +65,31 @@ int main() {
 | `close` | `void close() noexcept` | Gracefully sends close frame and cleans up curl handles. |
 | `isConnected` | `bool isConnected() const noexcept` | Returns `true` if currently connected. |
 
-## Build & Test
+## Install
 
-This folder owns its header, `test.cpp`, CMake target/config, manifest, port recipe and licenses. See the [integration guide](../../README.md#integration-vcpkg--cmakeninja).
+Add `bdombro/slimr-ws` to `vcpkg-configuration.json`:
 
-```bash
-just test-pkg ws  # From the repository root; automatic native deps + ASan/UBSan
-just build       # All optimized Release suites
+```json
+{
+  "kind": "git",
+  "repository": "https://github.com/bdombro/slimr-ws",
+  "baseline": "<commit-sha>",
+  "packages": [
+    "slimr-ws"
+  ]
+}
 ```
 
-Generated output stays under root `build/deps/` and `build/cmake/{Debug,Release}/`. Consumers link `slimr::ws` from `find_package(slimr-ws CONFIG REQUIRED)`. The optional manifest `tests` feature keeps test dependencies out of production consumption.
+Declare `slimr-ws` in `vcpkg.json` and link `slimr::ws` in `CMakeLists.txt`:
+
+```cmake
+find_package(slimr-ws CONFIG REQUIRED)
+target_link_libraries(my_target PRIVATE slimr::ws)
+```
+
+## Build & Test
+
+```bash
+just test   # Debug build (ASan + UBSan) and run tests
+just build  # Optimized Release build
+```

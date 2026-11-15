@@ -4,14 +4,14 @@
   "description": "Header-only native libcurl WebSocket client",
   "dependencies": [
     {
-      "name": "slimr-json",
-      "version>=": "0.1.1"
-    },
-    {
       "name": "curl",
       "features": [
         "websockets"
       ]
+    },
+    {
+      "name": "slimr-json",
+      "version>=": "0.1.1"
     }
   ],
   "features": {
