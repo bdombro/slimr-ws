@@ -1,4 +1,4 @@
-# slimr::ws (`packages/ws`)
+# slimr::ws
 
 Fast, clean RAII WebSocket client for C++26 built on top of libcurl's native WebSocket support (`CURLOPT_CONNECT_ONLY`, `curl_ws_send`, `curl_ws_recv`), featuring JSON message helpers and timeout management.
 
@@ -11,7 +11,27 @@ Borrowed directly from the design of [`@slimr/ws`](https://www.npmjs.com/package
 - **Convenient JSON Integration:** Send and receive `slimr::Json` objects directly alongside raw text frames.
 - **Timeout & Polling Control:** Configurable timeouts for both connection establishment and frame reception.
 
----
+## Install
+
+Add `bdombro/slimr-ws` to `vcpkg-configuration.json`:
+
+```json
+{
+  "kind": "git",
+  "repository": "https://github.com/bdombro/slimr-ws",
+  "baseline": "<commit-sha>",
+  "packages": [
+    "slimr-ws"
+  ]
+}
+```
+
+Declare `slimr-ws` in `vcpkg.json` and link `slimr::ws` in `CMakeLists.txt`:
+
+```cmake
+find_package(slimr-ws CONFIG REQUIRED)
+target_link_libraries(my_target PRIVATE slimr::ws)
+```
 
 ## Quick Start
 
@@ -65,31 +85,12 @@ int main() {
 | `close` | `void close() noexcept` | Gracefully sends close frame and cleans up curl handles. |
 | `isConnected` | `bool isConnected() const noexcept` | Returns `true` if currently connected. |
 
-## Install
+## Environment Variables
 
-Add `bdombro/slimr-ws` to `vcpkg-configuration.json`:
+| Name | Required | Purpose |
+| --- | --- | --- |
+| *(none)* | — | — |
 
-```json
-{
-  "kind": "git",
-  "repository": "https://github.com/bdombro/slimr-ws",
-  "baseline": "<commit-sha>",
-  "packages": [
-    "slimr-ws"
-  ]
-}
-```
+## Development
 
-Declare `slimr-ws` in `vcpkg.json` and link `slimr::ws` in `CMakeLists.txt`:
-
-```cmake
-find_package(slimr-ws CONFIG REQUIRED)
-target_link_libraries(my_target PRIVATE slimr::ws)
-```
-
-## Build & Test
-
-```bash
-just test   # Debug build (ASan + UBSan) and run tests
-just build  # Optimized Release build
-```
+See [docs/development.md](docs/development.md) for building, testing, linting, and releasing.
