@@ -13,12 +13,12 @@ Borrowed directly from the design of [`@slimr/ws`](https://www.npmjs.com/package
 
 ## Install
 
-Add `bdombro/slimr-ws` to `vcpkg-configuration.json`:
+Add `slimr-down-now/ws` to `vcpkg-configuration.json`:
 
 ```json
 {
   "kind": "git",
-  "repository": "https://github.com/bdombro/slimr-ws",
+  "repository": "https://github.com/slimr-down-now/ws",
   "baseline": "<commit-sha>",
   "packages": [
     "slimr-ws"
